@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MOOSE DRINK — High-octane energy drink. A digital monument to the legacy of Sidhu Moosewala. Unleash the energy." />
+  <title>MOOSE DRINK — Unleash the Legacy</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;600;700&family=Bebas+Neue&family=Teko:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Permanent+Marker&family=Rock+Salt&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#0a0a0a',
+            charcoal: '#111111',
+            ice: '#00f0ff',
+            royal: '#1e3a8a',
+            gold: '#ffd700',
+            silver: '#b0b0b0',
+          },
+          fontFamily: {
+            anton: ['Anton', 'sans-serif'],
+            oswald: ['Oswald', 'sans-serif'],
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            teko: ['Teko', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+            marker: ['"Permanent Marker"', 'cursive'],
+            salt: ['"Rock Salt"', 'cursive'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-ink text-silver font-inter antialiased overflow-x-hidden selection:bg-ice selection:text-black">
+
+  <!-- Film grain / noise overlay -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Custom cursor (desktop) -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+
+  <!-- ============ PRELOADER ============ -->
+  <div id="preloader" class="fixed inset-0 z-[100] bg-ink flex flex-col items-center justify-center">
+    <div class="text-center px-6">
+      <h1 id="preloader-logo" class="font-anton uppercase text-5xl sm:text-7xl md:text-8xl tracking-tight text-white leading-none glitch" data-text="MOOSE DRINK">
+        MOOSE<span class="text-ice">DRINK</span>
+      </h1>
+      <p class="mt-4 font-bebas text-xl tracking-[0.4em] text-silver">UNLEASH THE LEGACY</p>
+      <div class="mt-10 w-64 sm:w-80 mx-auto">
+        <div class="h-[3px] w-full bg-white/10 overflow-hidden rounded-full">
+          <div id="preloader-bar" class="h-full w-0 bg-ice shadow-[0_0_18px_#00f0ff]"></div>
+        </div>
+        <div class="mt-3 flex justify-between font-teko text-sm tracking-widest text-silver/70">
+          <span>LOADING</span>
+          <span id="preloader-pct">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8 py-5 flex items-center justify-between" aria-label="Primary">
+      <a href="#hero" class="group flex items-center gap-2" data-cursor="ENTER" aria-label="MOOSE DRINK home">
+        <svg class="w-7 h-7 text-ice drop-shadow-[0_0_6px_#00f0ff]" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M24 4c-6 4-10 4-16 2 2 8 0 14-4 18 8 1 12 4 14 10 2-6 6-9 14-10-4-4-6-10-4-18-6 2-10 2-16-2 4 3 8 3 12 0z" fill="currentColor" opacity="0.9"/>
+          <circle cx="24" cy="30" r="3" fill="#0a0a0a"/>
+        </svg>
+        <span class="font-anton uppercase text-xl tracking-tight text-white">MOOSE<span class="text-ice">DRINK</span></span>
+      </a>
+
+      <ul class="hidden lg:flex items-center gap-8 font-oswald uppercase text-sm tracking-widest">
+        <li><a href="#hero" class="nav-link" data-cursor="GO">Home</a></li>
+        <li><a href="#legend" class="nav-link" data-cursor="GO">The Legend</a></li>
+        <li><a href="#drink" class="nav-link" data-cursor="GO">The Drink</a></li>
+        <li><a href="#ingredients" class="nav-link" data-cursor="GO">Ingredients</a></li>
+        <li><a href="#legacy" class="nav-link" data-cursor="GO">Legacy</a></li>
+        <li><a href="#merch" class="nav-link" data-cursor="GO">Merch</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <button id="sound-toggle" class="relative w-10 h-10 grid place-items-center rounded-full border border-white/15 text-silver hover:text-ice hover:border-ice/60 transition" data-cursor="SOUND" aria-label="Toggle sound" aria-pressed="false">
+          <svg class="w-4 h-4 icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+          <svg class="w-4 h-4 icon-sound hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+        </button>
+        <a href="#newsletter" id="buy-now" class="hidden sm:inline-flex items-center font-oswald uppercase tracking-widest text-sm px-5 py-2.5 rounded-full bg-ice text-black font-semibold shadow-[0_0_18px_#00f0ff80] btn-pulse" data-cursor="BUY">Buy Now</a>
+        <button id="hamburger" class="lg:hidden w-10 h-10 grid place-items-center text-white" aria-label="Open menu" aria-expanded="false">
+          <span class="hb-line"></span><span class="hb-line"></span><span class="hb-line"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-ink/95 backdrop-blur-lg translate-x-full lg:hidden">
+    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_30%_20%,#1e3a8a,transparent_60%)]"></div>
+    <button id="close-menu" class="absolute top-6 right-6 w-10 h-10 grid place-items-center text-white text-3xl font-anton" aria-label="Close menu">&times;</button>
+    <ul class="relative h-full flex flex-col items-start justify-center gap-6 px-10 font-anton uppercase text-4xl sm:text-5xl">
+      <li><a href="#hero" class="mobile-link text-white hover:text-ice">Home</a></li>
+      <li><a href="#legend" class="mobile-link text-white hover:text-ice">The Legend</a></li>
+      <li><a href="#drink" class="mobile-link text-white hover:text-ice">The Drink</a></li>
+      <li><a href="#ingredients" class="mobile-link text-white hover:text-ice">Ingredients</a></li>
+      <li><a href="#lyrics" class="mobile-link text-white hover:text-ice">Anthem</a></li>
+      <li><a href="#legacy" class="mobile-link text-white hover:text-ice">Legacy</a></li>
+      <li><a href="#merch" class="mobile-link text-white hover:text-ice">Merch</a></li>
+      <li><a href="#newsletter" class="mobile-link text-ice">Join the Gang</a></li>
+    </ul>
+  </div>
+
+  <main id="smooth-content">
+    <!-- ============ 3. HERO ============ -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="parallax-scene absolute inset-0">
+        <!-- Layer 1: smoke texture -->
+        <div class="layer layer-back absolute inset-0 bg-[radial-gradient(ellipse_at_50%_40%,#0b1f3a_0%,#0a0a0a_60%)]" data-depth="0.08"></div>
+        <div class="layer layer-smoke absolute inset-0 opacity-50" data-depth="0.12"></div>
+        <!-- Big name text behind -->
+        <h2 class="pointer-events-none select-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-full text-center font-anton uppercase text-[16vw] leading-[0.8] text-white/[0.06] whitespace-nowrap" data-depth="0.04" aria-hidden="true">SIDHU MOOSEWALA</h2>
+        <!-- Layer 2: silhouette -->
+        <div class="layer absolute inset-0 flex items-end justify-center" data-depth="0.18">
+          <div class="silhouette w-[70vw] max-w-[520px] h-[80vh] bg-contain bg-bottom bg-no-repeat opacity-80"></div>
+        </div>
+      </div>
+
+      <!-- Layer 3: can + headline -->
+      <div class="relative z-10 text-center px-6">
+        <h1 class="font-anton uppercase leading-[0.85] text-white mix-blend-overlay">
+          <span class="block text-[13vw] sm:text-[11vw] md:text-9xl">MOOSE</span>
+          <span class="block text-[13vw] sm:text-[11vw] md:text-9xl text-ice drop-shadow-[0_0_30px_#00f0ff80]">DRINK</span>
+        </h1>
+        <div id="hero-can" class="mx-auto my-6 w-28 sm:w-36" data-depth="0.3">
+          <div class="can-float">
+            <div class="hero-can-visual mx-auto"></div>
+          </div>
+        </div>
+        <p class="max-w-xl mx-auto font-oswald uppercase tracking-[0.3em] text-silver text-sm sm:text-base">Street Luxury · High Octane · Legendary</p>
+        <a href="#drink" class="mt-8 inline-flex items-center gap-2 font-oswald uppercase tracking-widest text-sm px-8 py-4 rounded-full border border-ice text-ice btn-fill" data-cursor="UNLEASH">
+          Unleash the Energy
+        </a>
+      </div>
+
+      <!-- scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-silver/70">
+        <span class="font-teko tracking-[0.3em] text-xs">SCROLL</span>
+        <span class="scroll-arrow w-5 h-5 border-b-2 border-r-2 border-ice rotate-45"></span>
+      </div>
+    </section>
+
+    <!-- ============ 4. THE LEGEND ============ -->
+    <section id="legend" class="relative py-28 sm:py-36 overflow-hidden">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="font-salt text-ice text-sm mb-4">// the legend</p>
+          <h2 class="reveal-lines font-anton uppercase text-5xl sm:text-6xl md:text-7xl leading-[0.9] text-white">
+            The Voice of the Streets. The King of the Game.
+          </h2>
+          <p class="reveal-lines mt-6 text-silver/90 leading-relaxed max-w-prose">
+            This drink is a tribute to a legacy that refused to be silenced. Born from the soil of Punjab, carried on the backs of a generation, MooseDrink is bottled rebellion — ice-cold, high-octane, and unforgettable.
+          </p>
+          <div class="mt-10 flex flex-wrap gap-4 font-teko text-ice">
+            <div class="glass rounded-xl px-5 py-3"><span class="block text-3xl text-white">2017</span><span class="text-xs tracking-widest text-silver">DEBUT</span></div>
+            <div class="glass rounded-xl px-5 py-3"><span class="block text-3xl text-white">5B+</span><span class="text-xs tracking-widest text-silver">STREAMS</span></div>
+            <div class="glass rounded-xl px-5 py-3"><span class="block text-3xl text-white">∞</span><span class="text-xs tracking-widest text-silver">LEGACY</span></div>
+          </div>
+        </div>
+        <div class="legend-img relative aspect-[3/4] rounded-2xl overflow-hidden group" data-cursor="PLAY">
+          <div class="absolute inset-0 portrait"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent"></div>
+          <div class="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition">
+            <p class="font-marker text-ice text-lg drop-shadow-[0_0_10px_#00f0ff]">"Legends never die — they echo."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. THE DRINK — 3D ============ -->
+    <section id="drink" class="relative h-[300vh]">
+      <div class="drink-pin sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#0d1b33_0%,#0a0a0a_55%)]"></div>
+        <div id="can-3d" class="relative z-10 w-full h-full" data-cursor="DRAG"></div>
+        <div class="pointer-events-none absolute inset-0 z-20">
+          <div class="callout" data-x="18" data-y="28"><span class="dot"></span><p>CAFFEINE<br><em>200mg kick</em></p></div>
+          <div class="callout" data-x="80" data-y="38"><span class="dot"></span><p>TAURINE<br><em>focus fuel</em></p></div>
+          <div class="callout" data-x="22" data-y="70"><span class="dot"></span><p>B-VITAMINS<br><em>energy boost</em></p></div>
+          <div class="callout" data-x="78" data-y="74"><span class="dot"></span><p>ELECTROLYTES<br><em>stay frosty</em></p></div>
+        </div>
+        <div class="absolute top-24 left-1/2 -translate-x-1/2 text-center z-20">
+          <h2 class="font-anton uppercase text-4xl sm:text-6xl text-white">The <span class="text-ice">Drink</span></h2>
+          <p class="font-teko tracking-[0.3em] text-silver text-sm">DRAG TO ROTATE · SCROLL TO EXPLORE</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. INGREDIENTS ============ -->
+    <section id="ingredients" class="relative py-28 sm:py-36">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="text-center mb-16">
+          <p class="font-salt text-ice text-sm mb-3">// the formula</p>
+          <h2 class="font-anton uppercase text-5xl sm:text-7xl text-white">Energy Formula</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <article class="tilt-card glass rounded-2xl p-7" data-cursor="VIEW">
+            <div class="icon-wrap text-ice text-4xl mb-4">⚡</div>
+            <h3 class="font-oswald uppercase text-xl text-white tracking-wide">Caffeine</h3>
+            <p class="mt-2 text-sm text-silver/80">200mg of pure drive. Sharp focus, zero crash.</p>
+            <p class="mt-4 font-teko text-ice text-2xl">100% <span class="text-silver text-sm">DV</span></p>
+          </article>
+          <article class="tilt-card glass rounded-2xl p-7" data-cursor="VIEW">
+            <div class="icon-wrap text-ice text-4xl mb-4">🧬</div>
+            <h3 class="font-oswald uppercase text-xl text-white tracking-wide">Taurine</h3>
+            <p class="mt-2 text-sm text-silver/80">1000mg to lock in your focus and endurance.</p>
+            <p class="mt-4 font-teko text-ice text-2xl">90% <span class="text-silver text-sm">DV</span></p>
+          </article>
+          <article class="tilt-card glass rounded-2xl p-7" data-cursor="VIEW">
+            <div class="icon-wrap text-ice text-4xl mb-4">💊</div>
+            <h3 class="font-oswald uppercase text-xl text-white tracking-wide">B12 + B6</h3>
+            <p class="mt-2 text-sm text-silver/80">The engine of energy metabolism. Full tank.</p>
+            <p class="mt-4 font-teko text-ice text-2xl">120% <span class="text-silver text-sm">DV</span></p>
+          </article>
+          <article class="tilt-card glass rounded-2xl p-7" data-cursor="VIEW">
+            <div class="icon-wrap text-ice text-4xl mb-4">🌿</div>
+            <h3 class="font-oswald uppercase text-xl text-white tracking-wide">Ginseng</h3>
+            <p class="mt-2 text-sm text-silver/80">Ancient root, modern edge. Stamina unlocked.</p>
+            <p class="mt-4 font-teko text-ice text-2xl">80% <span class="text-silver text-sm">DV</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. LYRICS / KINETIC ============ -->
+    <section id="lyrics" class="relative py-28 sm:py-40 overflow-hidden">
+      <canvas id="viz-canvas" class="absolute inset-0 w-full h-full opacity-40"></canvas>
+      <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <p class="font-salt text-ice text-sm mb-10 text-center">// the anthem</p>
+        <div class="space-y-6 sm:space-y-10 text-center">
+          <p class="kinetic font-anton uppercase text-white text-[10vw] md:text-8xl" data-speed="0.9">LEGEND</p>
+          <p class="kinetic font-anton uppercase text-ice/90 text-[14vw] md:text-9xl drop-shadow-[0_0_30px_#00f0ff40]" data-speed="1.3">SO HIGH</p>
+          <p class="kinetic font-anton uppercase text-white text-[8vw] md:text-7xl" data-speed="0.7">SAME BEEF</p>
+          <p class="kinetic font-anton uppercase text-gold/90 text-[12vw] md:text-8xl drop-shadow-[0_0_30px_#ffd70040]" data-speed="1.1">295</p>
+          <p class="kinetic font-marker text-ice text-2xl md:text-4xl" data-speed="1.0">"Gun shot vajde ne, naam Sidhu da chalda"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 8. LEGACY TIMELINE (HORIZONTAL) ============ -->
+    <section id="legacy" class="relative overflow-hidden">
+      <div class="h-screen flex items-center" id="legacy-track-wrap">
+        <div id="legacy-track" class="flex gap-8 px-[10vw]">
+          <div class="timeline-card shrink-0 w-[80vw] sm:w-[55vw] md:w-[38vw]">
+            <div class="glass rounded-2xl p-8 h-full">
+              <span class="font-anton text-ice text-6xl">1993</span>
+              <h3 class="font-oswald uppercase text-2xl text-white mt-3">The Beginning</h3>
+              <p class="text-silver/80 mt-3">Born in Moosa, Punjab. A voice that would one day shake the world.</p>
+            </div>
+          </div>
+          <div class="timeline-card shrink-0 w-[80vw] sm:w-[55vw] md:w-[38vw]">
+            <div class="glass rounded-2xl p-8 h-full">
+              <span class="font-anton text-ice text-6xl">2017</span>
+              <h3 class="font-oswald uppercase text-2xl text-white mt-3">So High</h3>
+              <p class="text-silver/80 mt-3">The breakout anthem. Streets everywhere knew the name.</p>
+            </div>
+          </div>
+          <div class="timeline-card shrink-0 w-[80vw] sm:w-[55vw] md:w-[38vw]">
+            <div class="glass rounded-2xl p-8 h-full">
+              <span class="font-anton text-ice text-6xl">2020</span>
+              <h3 class="font-oswald uppercase text-2xl text-white mt-3">Global Reign</h3>
+              <p class="text-silver/80 mt-3">Billboard charts, UK top 10, a worldwide movement.</p>
+            </div>
+          </div>
+          <div class="timeline-card shrink-0 w-[80vw] sm:w-[55vw] md:w-[38vw]">
+            <div class="glass rounded-2xl p-8 h-full border border-gold/40">
+              <span class="font-anton text-gold text-6xl">∞</span>
+              <h3 class="font-oswald uppercase text-2xl text-white mt-3">Gone But Never Forgotten</h3>
+              <p class="text-silver/80 mt-3">The legacy burns on — a flame that never dies.</p>
+              <div class="candle mt-6"><span class="flame"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 9. FAN WALL ============ -->
+    <section id="fanwall" class="relative py-28 sm:py-36">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="text-center mb-14">
+          <p class="font-salt text-ice text-sm mb-3">// the moose gang</p>
+          <h2 class="font-anton uppercase text-5xl sm:text-7xl text-white">Fan Wall</h2>
+        </div>
+        <div id="fan-grid" class="columns-2 md:columns-3 gap-5 space-y-5"></div>
+        <div class="text-center mt-12">
+          <button class="font-oswald uppercase tracking-widest text-sm px-8 py-4 rounded-full bg-ice text-black font-semibold btn-pulse" data-cursor="JOIN" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">Join the Moose Gang</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10. STORE LOCATOR ============ -->
+    <section id="stores" class="relative py-28 sm:py-36 bg-charcoal/40">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="font-salt text-ice text-sm mb-3">// where to buy</p>
+          <h2 class="font-anton uppercase text-4xl sm:text-6xl text-white mb-8">Find Your Fix</h2>
+          <ul id="store-list" class="space-y-3"></ul>
+        </div>
+        <div class="relative aspect-square rounded-2xl glass overflow-hidden grid place-items-center">
+          <svg id="store-map" viewBox="0 0 400 400" class="w-full h-full">
+            <path d="M60 90 Q120 40 200 70 T360 110 Q340 200 300 280 T180 350 Q90 320 60 230 Z" fill="#0d1b33" stroke="#1e3a8a" stroke-width="1.5" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. MERCH ============ -->
+    <section id="merch" class="relative py-28 sm:py-36">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="text-center mb-14">
+          <p class="font-salt text-ice text-sm mb-3">// rep the gang</p>
+          <h2 class="font-anton uppercase text-5xl sm:text-7xl text-white">Merch & Apparel</h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="tilt-card glass rounded-2xl overflow-hidden" data-cursor="VIEW">
+            <div class="aspect-square merch-bg grid place-items-center"><span class="font-anton uppercase text-4xl text-white/80">TEE</span></div>
+            <div class="p-5 flex items-center justify-between">
+              <div><h3 class="font-oswald uppercase text-white">Moose Gang Tee</h3><p class="font-teko text-ice text-xl">$34</p></div>
+              <button class="quick-view font-teko uppercase text-xs tracking-widest px-4 py-2 rounded-full border border-ice text-ice" data-title="Moose Gang Tee" data-price="$34">Quick View</button>
+            </div>
+          </article>
+          <article class="tilt-card glass rounded-2xl overflow-hidden" data-cursor="VIEW">
+            <div class="aspect-square merch-bg grid place-items-center"><span class="font-anton uppercase text-4xl text-white/80">HOODIE</span></div>
+            <div class="p-5 flex items-center justify-between">
+              <div><h3 class="font-oswald uppercase text-white">Legacy Hoodie</h3><p class="font-teko text-ice text-xl">$69</p></div>
+              <button class="quick-view font-teko uppercase text-xs tracking-widest px-4 py-2 rounded-full border border-ice text-ice" data-title="Legacy Hoodie" data-price="$69">Quick View</button>
+            </div>
+          </article>
+          <article class="tilt-card glass rounded-2xl overflow-hidden" data-cursor="VIEW">
+            <div class="aspect-square merch-bg grid place-items-center"><span class="font-anton uppercase text-4xl text-white/80">CAP</span></div>
+            <div class="p-5 flex items-center justify-between">
+              <div><h3 class="font-oswald uppercase text-white">295 Snapback</h3><p class="font-teko text-ice text-xl">$29</p></div>
+              <button class="quick-view font-teko uppercase text-xs tracking-widest px-4 py-2 rounded-full border border-ice text-ice" data-title="295 Snapback" data-price="$29">Quick View</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12. NEWSLETTER ============ -->
+    <section id="newsletter" class="relative py-32 overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,#1e3a8a40,transparent_60%)]"></div>
+      <canvas id="confetti-canvas" class="pointer-events-none fixed inset-0 z-[70] hidden"></canvas>
+      <div class="relative mx-auto max-w-3xl px-5 sm:px-8 text-center">
+        <h2 class="font-anton uppercase text-5xl sm:text-7xl text-white">Join the <span class="text-ice">Moose Gang</span></h2>
+        <p class="mt-4 text-silver/80">Drop your email. Get early access, drops, and the energy delivered.</p>
+        <form id="newsletter-form" class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <input type="email" required placeholder="your@email.com" class="neon-input flex-1 max-w-sm bg-black/40 border border-white/15 rounded-full px-6 py-4 text-white placeholder:text-silver/50 focus:outline-none" aria-label="Email address" />
+          <button type="submit" class="font-oswald uppercase tracking-widest text-sm px-8 py-4 rounded-full bg-ice text-black font-semibold btn-pulse" data-cursor="SEND">Count Me In</button>
+        </form>
+        <p id="newsletter-success" class="mt-5 font-marker text-gold text-xl opacity-0">Welcome to the Gang. 🔥</p>
+      </div>
+    </section>
+
+    <!-- ============ 13. FOOTER ============ -->
+    <footer class="relative border-t border-white/10 pt-16 pb-10">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="flex flex-col md:flex-row justify-between gap-10">
+          <div>
+            <h3 class="font-anton uppercase text-2xl text-white">MOOSE<span class="text-ice">DRINK</span></h3>
+            <p class="mt-3 text-sm text-silver/70 max-w-xs">Bottled rebellion. High-octane energy. A tribute to a legend.</p>
+          </div>
+          <div class="flex gap-5 items-start">
+            <a href="#" class="social" data-cursor="GO" aria-label="Instagram">IG</a>
+            <a href="#" class="social" data-cursor="GO" aria-label="Spotify">SP</a>
+            <a href="#" class="social" data-cursor="GO" aria-label="YouTube">YT</a>
+            <a href="#" class="social" data-cursor="GO" aria-label="Twitter">X</a>
+          </div>
+        </div>
+        <div class="mt-14 overflow-hidden">
+          <h2 class="footer-outline font-anton uppercase text-[18vw] leading-[0.8] text-center" data-cursor="GO">MOOSEDRINK</h2>
+        </div>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-silver/50">
+          <p>© 2025 MooseDrink. All rights reserved. In loving memory of Sidhu Moosewala.</p>
+          <button id="back-to-top" class="group flex items-center gap-2 font-teko uppercase tracking-widest text-silver hover:text-ice" data-cursor="UP">
+            <span class="rocket">🚀</span> Back to Top
+          </button>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating music player -->
+  <div id="music-player" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-md translate-y-28 opacity-0">
+    <div class="glass rounded-2xl px-4 py-3 flex items-center gap-3">
+      <button id="mp-play" class="w-11 h-11 shrink-0 grid place-items-center rounded-full bg-ice text-black" data-cursor="PLAY" aria-label="Play / pause">
+        <svg class="w-4 h-4 mp-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="w-4 h-4 mp-icon-pause hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+      </button>
+      <div class="min-w-0 flex-1">
+        <p id="mp-title" class="font-oswald uppercase tracking-wider text-xs text-white truncate">The Moose Anthem</p>
+        <div class="mt-1 h-1 w-full bg-white/15 rounded-full overflow-hidden">
+          <div id="mp-progress" class="h-full w-0 bg-gradient-to-r from-ice to-royal"></div>
+        </div>
+      </div>
+      <div id="mp-viz" class="flex items-end gap-[2px] h-7 w-14 shrink-0" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[80] bg-black/90 backdrop-blur-sm hidden items-center justify-center p-6">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white text-4xl font-anton" aria-label="Close">&times;</button>
+    <figure class="max-w-3xl text-center">
+      <div id="lightbox-img" class="aspect-[4/3] w-full rounded-xl"></div>
+      <figcaption id="lightbox-cap" class="mt-4 font-oswald uppercase tracking-widest text-silver"></figcaption>
+    </figure>
+  </div>
+
+  <!-- Quick View modal -->
+  <div id="quickview" class="fixed inset-0 z-[80] bg-black/85 backdrop-blur-sm hidden items-center justify-center p-6">
+    <div class="glass rounded-2xl max-w-md w-full p-8 relative">
+      <button id="qv-close" class="absolute top-4 right-5 text-white text-3xl font-anton" aria-label="Close">&times;</button>
+      <div class="aspect-square merch-bg rounded-xl grid place-items-center mb-5"><span id="qv-art" class="font-anton uppercase text-4xl text-white/80"></span></div>
+      <h3 id="qv-title" class="font-oswald uppercase text-2xl text-white"></h3>
+      <p id="qv-price" class="font-teko text-ice text-3xl mt-1"></p>
+      <p class="text-sm text-silver/70 mt-3">Premium fabric. Street-ready fit. Repping the legacy.</p>
+      <button class="mt-6 w-full font-oswald uppercase tracking-widest text-sm px-6 py-3 rounded-full bg-ice text-black font-semibold" data-cursor="ADD">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+  <script src="https://unpkg.com/split-type@0.3.4/umd/index.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
