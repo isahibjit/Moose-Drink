@@ -128,9 +128,11 @@
         <div class="layer layer-smoke absolute inset-0 opacity-50" data-depth="0.12"></div>
         <!-- Big name text behind -->
         <h2 class="pointer-events-none select-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-full text-center font-anton uppercase text-[16vw] leading-[0.8] text-white/[0.06] whitespace-nowrap" data-depth="0.04" aria-hidden="true">SIDHU MOOSEWALA</h2>
-        <!-- Layer 2: silhouette -->
+        <!-- Layer 2: animated character video (replaces silhouette prop) -->
         <div class="layer absolute inset-0 flex items-end justify-center" data-depth="0.18">
-          <div class="silhouette w-[70vw] max-w-[520px] h-[80vh] bg-contain bg-bottom bg-no-repeat opacity-80"></div>
+          <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="assets/video/character-idle.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
 
